@@ -14,6 +14,8 @@ export const LoginUser = createAsyncThunk("user/LoginUser", async(user, thunkAPI
         const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`, {
             email: user.email,
             password: user.password
+        }, {
+            withCredentials: true 
         });
         return response.data;
     } catch (error) {
@@ -26,7 +28,9 @@ export const LoginUser = createAsyncThunk("user/LoginUser", async(user, thunkAPI
 
 export const getMe = createAsyncThunk("user/getMe", async(_, thunkAPI) => {
     try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/me`);
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/me`, {
+            withCredentials: true 
+        });
         return response.data;
     } catch (error) {
         if(error.response){
@@ -37,7 +41,9 @@ export const getMe = createAsyncThunk("user/getMe", async(_, thunkAPI) => {
 });
 
 export const LogOut = createAsyncThunk("user/LogOut", async() => {
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}logout`);
+    await axios.delete(`${process.env.REACT_APP_BASE_URL}logout`, {
+        withCredentials: true
+    });
 });
 
 export const authSlice = createSlice({
