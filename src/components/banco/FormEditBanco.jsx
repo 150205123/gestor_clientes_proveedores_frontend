@@ -18,7 +18,7 @@ const FormEditBanco = () => {
     useEffect(() => {
         const getBancoById = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/banco/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/banco/${id}`);
                 console.log("Banco Data:", response.data); // Inspecciona aquí
                 const bancoData = response.data;
                 setTipoCuenta(bancoData.TIPO_CUENTA);
@@ -34,7 +34,7 @@ const FormEditBanco = () => {
 
         const getEntidadesBanco = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/namebanco");
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/namebanco`);
                 setEntidadesBanco(response.data);
             } catch (error) {
                 console.error("Error al obtener entidades de banco:", error);
@@ -43,7 +43,7 @@ const FormEditBanco = () => {
 
         const getEntidades = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/entidad");
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/entidad`);
                 setEntidades(response.data);
             } catch (error) {
                 console.error("Error al obtener entidades:", error);
@@ -58,7 +58,7 @@ const FormEditBanco = () => {
     const updateBanco = async (e) => {
         e.preventDefault();
         try {
-            await axios.patch(`http://localhost:5000/banco/${id}`, {
+            await axios.patch(`${process.env.REACT_APP_BASE_URL}/banco/${id}`, {
                 TIPO_CUENTA: tipoCuenta,
                 NUMERO_CUENTA: numeroCuenta.trim(),
                 ID_ENTIDAD_BANCO: entidadBancoId,

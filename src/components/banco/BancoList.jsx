@@ -14,7 +14,7 @@ const BancoList = () => {
 
     const obtenerTodos = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/banco");
+            const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/banco`);
             setBancos(response.data);
         } catch (error) {
             console.error("Error al obtener bancos:", error);
@@ -23,7 +23,7 @@ const BancoList = () => {
 
     const buscarBanco = async () => {
         try {
-            const response = await axios.post("http://localhost:5000/buscarBanco", {
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/buscarBanco`, {
                 searchText: searchText.trim()
             });
             setBancos(response.data);
@@ -41,7 +41,7 @@ const BancoList = () => {
 
     const eliminar = async (bancoId) => {
         try {
-            await axios.delete(`http://localhost:5000/banco/${bancoId}`);
+            await axios.delete(`${process.env.REACT_APP_BASE_URL}/banco/${bancoId}`);
             obtenerTodos();
         } catch (error) {
             console.error("Error al eliminar banco:", error);

@@ -13,12 +13,12 @@ const EntidadList = () => {
     }, []);
 
     const obtenerTodos = async () => {
-        const response = await axios.get("http://localhost:5000/entidad");
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/entidad`);
         setEntidades(response.data);
     };
 
     const buscarEntidad = async () => {
-        const response = await axios.post("http://localhost:5000/buscarEntidad", {
+        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/buscarEntidad`, {
             searchText: searchText.trim()
         });
         setEntidades(response.data);
@@ -32,7 +32,7 @@ const EntidadList = () => {
     };
 
     const eliminar = async (entidadId) => {
-        await axios.delete(`http://localhost:5000/entidad/${entidadId}`);
+        await axios.delete(`${process.env.REACT_APP_BASE_URL}/entidad/${entidadId}`);
         obtenerTodos();
     };
 

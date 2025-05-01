@@ -20,7 +20,7 @@ const FormEditUser = () => {
   useEffect(() => {
     const getUserById = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/usuario/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/usuario/${id}`);
         setDni(response.data.DNI_USUARIO);
         setNombres(response.data.NOMBRE_USUARIO);
         setApellidos(response.data.APELLIDO_USUARIO);
@@ -38,7 +38,7 @@ const FormEditUser = () => {
 
     const cargarRoles = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/rol");
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/rol`);
         setRoles(response.data);
       } catch (error) {
         console.error("Error al cargar los roles", error);
@@ -52,7 +52,7 @@ const FormEditUser = () => {
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/usuario/${id}`, {
+      await axios.patch(`${process.env.REACT_APP_BASE_URL}/usuario/${id}`, {
         DNI_USUARIO: dni,
         NOMBRE_USUARIO: nombres,
         APELLIDO_USUARIO: apellidos,

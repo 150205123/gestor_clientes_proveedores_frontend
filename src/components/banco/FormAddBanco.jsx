@@ -21,7 +21,7 @@ const FormAddBanco = () => {
 
     const obtenerEntidades = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/entidad");
+            const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/entidad`);
             // Mapea las entidades para adaptarlas a react-select
             const options = response.data.map((entidad) => ({
                 value: entidad.ID_ENTIDAD,
@@ -35,7 +35,7 @@ const FormAddBanco = () => {
 
     const obtenerEntidadesBanco = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/namebanco");
+            const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/namebanco`);
             setEntidadesBanco(response.data);
         } catch (error) {
             console.error("Error al obtener nombres de banco:", error);
@@ -45,7 +45,7 @@ const FormAddBanco = () => {
     const saveBanco = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:5000/banco", {
+            await axios.post(`${process.env.REACT_APP_BASE_URL}/banco`, {
                 TIPO_CUENTA: tipoCuenta,
                 NUMERO_CUENTA: numeroCuenta.trim(),
                 ID_ENTIDAD: idEntidad?.value || null, // Usa el valor seleccionado en react-select

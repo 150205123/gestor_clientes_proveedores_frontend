@@ -16,7 +16,7 @@ const FormEditEntidad = () => {
     useEffect(() => {
         const getEntidadById = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/entidad/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/entidad/${id}`);
                 setRazonSocial(response.data.RAZON_SOCIAL);
                 setRuc(response.data.RUC);
                 setTipoEntidad(response.data.TIPO_ENTIDAD);
@@ -33,7 +33,7 @@ const FormEditEntidad = () => {
     const updateEntidad = async (e) => {
         e.preventDefault();
         try {
-            await axios.patch(`http://localhost:5000/entidad/${id}`, {
+            await axios.patch(`${process.env.REACT_APP_BASE_URL}/entidad/${id}`, {
                 RAZON_SOCIAL: razonSocial.trim(),
                 RUC: ruc.trim(),
                 TIPO_ENTIDAD: tipoEntidad,

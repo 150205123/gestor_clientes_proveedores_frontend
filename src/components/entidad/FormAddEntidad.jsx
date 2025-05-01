@@ -15,7 +15,7 @@ const FormAddEntidad = () => {
   const saveEntidad = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/entidad", {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/entidad`, {
         RAZON_SOCIAL: razonSocial.trim(),
         RUC: ruc.trim(),
         TIPO_ENTIDAD: tipoEntidad,

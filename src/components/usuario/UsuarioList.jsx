@@ -18,7 +18,7 @@ const UsuarioList = () => {
 
   const obtenerTodos = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/usuario");
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/usuario`);
       // Verifica si user está definido antes de filtrar
       const filteredUsers = response.data.filter(u => u.ID_USUARIO !== user?.ID_USUARIO);
       setUsers(filteredUsers); 
@@ -29,7 +29,7 @@ const UsuarioList = () => {
 
   const buscarUsuario = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/buscarUsuario", {
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/buscarUsuario`, {
         searchText: searchText.trim()
       });
       // Verifica si user está definido antes de filtrar
@@ -49,7 +49,7 @@ const UsuarioList = () => {
 
   const eliminar = async (userId) => {
     try {
-      await axios.delete(`http://localhost:5000/usuario/${userId}`);
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/usuario/${userId}`);
       obtenerTodos();
     } catch (error) {
       console.error("Error al eliminar usuario:", error);

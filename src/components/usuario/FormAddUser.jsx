@@ -20,7 +20,7 @@ const FormAddUser = () => {
   useEffect(() => {
     const cargarRoles = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/rol");
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/rol`);
         setRoles(response.data);
       } catch (error) {
         console.error("Error al cargar los roles", error);
@@ -33,7 +33,7 @@ const FormAddUser = () => {
   const saveUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/usuario", {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/usuario`, {
         DNI_USUARIO: dni,
         NOMBRE_USUARIO: nombres,
         APELLIDO_USUARIO: apellidos,
